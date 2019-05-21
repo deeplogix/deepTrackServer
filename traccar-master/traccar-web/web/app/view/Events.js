@@ -38,6 +38,9 @@ Ext.define('Traccar.view.Events', {
     header: false,
 
     tbar: {
+        style:{
+            color: '#8b1a12da'
+        },
         componentCls: 'toolbar-header-style',
         defaults: {
             xtype: 'button',
