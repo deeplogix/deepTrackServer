@@ -121,6 +121,9 @@ Ext.define('Traccar.view.dialog.Server', {
     },
 
     buttons: [{
+         style:{
+            background: '#FF6A5C'
+        },
         text: Strings.sharedAttributes,
         handler: 'showAttributesView'
     }, {
