@@ -10,9 +10,10 @@
     <entry key='web.debug'>true</entry>
     <entry key='web.console'>true</entry>
 
-    <entry key='geocoder.enable'>false</entry>
-    <entry key='geocoder.type'>ban</entry>
-
+    <entry key='geocoder.enable'>true</entry>
+    <entry key='geocoder.type'>nominatim</entry>
+    <entry key='geocoder.url'>https://nominatim.openstreetmap.org/reverse</entry>
+    
     <entry key='logger.console'>true</entry>
 
     <entry key='database.driver'>com.mysql.jdbc.Driver</entry>
