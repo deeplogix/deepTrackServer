@@ -13,7 +13,7 @@
 }
 
 .toolbar-header-style {
-    background-color: #8b1a12da !important;
+    background-color: #414141 !important;
 }
 
 body.x-border-layout-ct, div.x-border-layout-ct {
@@ -23,7 +23,11 @@ body.x-border-layout-ct, div.x-border-layout-ct {
 .x-fieldset {
     overflow: visible !important; /* workaround for Safari issue */
 }
-
+.x-panel-header-default {
+    background-image: none;
+    background-color: #414141 !important;
+    border: 1px solid #414141 !important;
+}
 #attribution {
     position: absolute;
     bottom: 10px;
