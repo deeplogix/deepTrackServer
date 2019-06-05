@@ -137,7 +137,7 @@ public class DataManager {
             generateQueries = config.getBoolean("database.generateQueries");
 
             dataSource = new HikariDataSource(hikariConfig);
-
+            LogReportQueries.dataSource=dataSource;
         }
     }
 

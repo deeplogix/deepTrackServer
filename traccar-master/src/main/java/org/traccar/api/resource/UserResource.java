@@ -15,6 +15,8 @@
  */
 package org.traccar.api.resource;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import org.traccar.Context;
 import org.traccar.api.BaseObjectResource;
 import org.traccar.database.UsersManager;
@@ -35,6 +37,8 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
@@ -88,7 +92,13 @@ public class UserResource extends BaseObjectResource<User> {
             LogAction.link(getUserId(), User.class, getUserId(), ManagedUser.class, entity.getId());
         }
         Context.getUsersManager().refreshUserItems();
-        return Response.ok(entity).build();
+        try {
+            return Response.temporaryRedirect(new URI("http://localhost:8082/api/testuser")).build();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(UserResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(entity).build();
+        }
+       
     }
 
 }
