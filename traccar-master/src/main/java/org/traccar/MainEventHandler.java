@@ -32,6 +32,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import org.traccar.database.LogReportQueries;
 
 public class MainEventHandler extends ChannelInboundHandlerAdapter {
 
@@ -41,6 +43,7 @@ public class MainEventHandler extends ChannelInboundHandlerAdapter {
 
     private final Set<String> connectionlessProtocols = new HashSet<>();
     private final Set<String> logAttributes = new LinkedHashSet<>();
+    private String identifier;
 
     public MainEventHandler() {
         String connectionlessProtocolList = Context.getConfig().getString("status.ignoreOffline");
@@ -60,10 +63,15 @@ public class MainEventHandler extends ChannelInboundHandlerAdapter {
                 Context.getDeviceManager().updateLatestPosition(position);
             } catch (SQLException error) {
                 LOGGER.warn("Failed to update device", error);
+            try {
+                int i= LogReportQueries.createLog(Context.getIdentityManager().getById(position.getDeviceId()).getUniqueId(), "Error",error.toString());
+            }catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(MainEventHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }                
             }
 
             String uniqueId = Context.getIdentityManager().getById(position.getDeviceId()).getUniqueId();
-
+            identifier=uniqueId;
             StringBuilder builder = new StringBuilder();
             builder.append(formatChannel(ctx.channel())).append(" ");
             builder.append("id: ").append(uniqueId);
