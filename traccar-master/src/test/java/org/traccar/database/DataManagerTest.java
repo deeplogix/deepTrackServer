@@ -13,6 +13,7 @@ import org.traccar.model.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.traccar.model.LogReport;
 
 public class DataManagerTest {
 
@@ -24,7 +25,8 @@ public class DataManagerTest {
                 DataManager.constructObjectQuery(DataManager.ACTION_DELETE, Group.class, false));
         assertEquals("SELECT * FROM tc_positions WHERE id = :id",
                 DataManager.constructObjectQuery(DataManager.ACTION_SELECT, Position.class, false));
-
+        assertEquals("SELECT * FROM logreport WHERE id = :id",
+                DataManager.constructObjectQuery(DataManager.ACTION_SELECT, LogReport.class, false));
         String insertDevice = DataManager.constructObjectQuery(DataManager.ACTION_INSERT, Device.class, false);
         assertFalse(insertDevice.contains("class"));
         assertFalse(insertDevice.contains("id"));

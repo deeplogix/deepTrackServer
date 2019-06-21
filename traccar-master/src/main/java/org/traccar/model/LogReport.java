@@ -5,20 +5,10 @@
  */
 package org.traccar.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 
-public class LogReport {
-    long user_id;
-
-    public long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
-    }
-    
+public class LogReport extends ExtendedModel{ 
     String log_type;
 
     public String getLog_type() {
@@ -39,14 +29,14 @@ public class LogReport {
         this.log_message = log_message;
     }
     
-    Date logged_date;
+    Date created_at =new Date();
 
     public Date getLogged_date() {
-        return logged_date;
+        return created_at;
     }
 
     public void setLogged_date(Date logged_date) {
-        this.logged_date = logged_date;
+        this.created_at = logged_date;
     }
     
 }

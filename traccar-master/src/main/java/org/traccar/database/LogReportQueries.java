@@ -31,7 +31,7 @@ public class LogReportQueries {
         if(rs.next()){
             userid=rs.getInt(1);
          }
-            String query2="insert into tc_log_report(log_type,log_message,userid) values(?,?,?)";
+            String query2="insert into logreport(log_type,log_message,userid) values(?,?,?)";
             PreparedStatement preparedStatement=con.prepareStatement(query2);
             preparedStatement.setString(1, log_type);
             preparedStatement.setString(2, log_message);
