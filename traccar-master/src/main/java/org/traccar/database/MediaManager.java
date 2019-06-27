@@ -27,8 +27,10 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 
 public class MediaManager {
 
@@ -64,6 +66,11 @@ public class MediaManager {
                 return name;
             } catch (IOException e) {
                 LOGGER.warn("Save media file error", e);
+                            try {
+                int i= LogReportQueries.createLog(uniqueId, "Error",e.toString());
+            }catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(MediaManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return null;

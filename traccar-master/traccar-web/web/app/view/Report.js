@@ -36,7 +36,7 @@ Ext.define('Traccar.view.Report', {
 
     tbar: {
         style:{
-            background: '#FF6A5C'
+             background: '#FF6A5C'
         },
         scrollable: true,
         items: [{

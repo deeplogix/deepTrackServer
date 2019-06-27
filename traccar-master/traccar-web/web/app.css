@@ -35,6 +35,10 @@ body.x-border-layout-ct, div.x-border-layout-ct {
     background-color: #414141 !important;
     border: 1px solid #414141 !important;
 }
+/* .x-window-header-title-default {
+    background-color: #414141 !important;
+    border: 1px solid #414141 !important;
+} */
 #spinner:before {
     content: '';
     box-sizing: border-box;

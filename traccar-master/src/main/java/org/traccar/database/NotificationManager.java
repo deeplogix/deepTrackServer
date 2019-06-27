@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Level;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +66,11 @@ public class NotificationManager extends ExtendedObjectManager<Notification> {
             getDataManager().addObject(event);
         } catch (SQLException error) {
             LOGGER.warn("Event save error", error);
+            try {
+                int i= LogReportQueries.createLog(Context.getIdentityManager().getById(position.getDeviceId()).getUniqueId(), "Error",error.toString());
+            }catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(NotificationManager.class.getName()).log(Level.SEVERE, null, ex);
+                }            
         }
 
         if (position != null && geocodeOnRequest && Context.getGeocoder() != null && position.getAddress() == null) {
