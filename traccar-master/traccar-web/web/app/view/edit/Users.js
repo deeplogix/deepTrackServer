@@ -103,6 +103,14 @@ Ext.define('Traccar.view.edit.Users', {
             glyph: 'xf0ad@FontAwesome',
             tooltip: Strings.sharedMaintenance,
             tooltipType: 'title'
+        },{
+            xtype: 'button',
+            disabled: true,
+            handler: 'onLogsClick',
+            reference: 'userLogsButton',
+            glyph: 'f071@FontAwesome',
+            tooltip: 'Logs',
+            tooltipType: 'title'
         }]
     },
 

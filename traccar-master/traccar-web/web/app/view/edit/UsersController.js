@@ -226,6 +226,21 @@ Ext.define('Traccar.view.edit.UsersController', {
             }
         }).show();
     },
+    
+    onLogsClick: function () {
+        var user = this.getView().getSelectionModel().getSelection()[0];
+        Ext.create('Traccar.view.BaseWindow', {
+            title: 'Logs',
+            items: {
+                xtype: 'linkLogReportView',
+                baseObjectName: 'userId',
+                linkObjectName: 'logreportId',
+                storeName: 'AllLogReports',
+                linkStoreName: 'LogReport',
+                baseObject: user.getId()
+            }
+        }).show();
+    },
 
     onSelectionChange: function (selection, selected) {
         var disabled = selected.length === 0;
@@ -238,6 +253,7 @@ Ext.define('Traccar.view.edit.UsersController', {
         this.lookupReference('userDriversButton').setDisabled(disabled);
         this.lookupReference('userCommandsButton').setDisabled(disabled);
         this.lookupReference('userMaintenancesButton').setDisabled(disabled);
+        this.lookupReference('userLogsButton').setDisabled(disabled);
         this.lookupReference('userUsersButton').setDisabled(disabled || selected[0].get('userLimit') === 0);
         this.callParent(arguments);
     }
